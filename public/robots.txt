@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /account/
+Disallow: /booking/confirmation/
+Disallow: /reset-password
+Disallow: /api/
+Disallow: /internal/
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://dachcourierservices.co.uk/sitemap.xml
+

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-[calc(100%_-_40px)] max-w-dach;
+  }
+
+  .section {
+    @apply py-20 md:py-14;
+  }
+
+  .grid {
+    display: grid;
+    @apply gap-6;
+  }
+
+  .card {
+    @apply rounded-md border border-line bg-surface shadow-sm;
+  }
+
+  .field {
+    @apply grid gap-2;
+  }
+
+  .label {
+    @apply text-sm font-semibold;
+  }
+
+  .control {
+    @apply min-h-11 w-full rounded-sm border border-line bg-white px-3 py-2.5 outline-none focus:border-brand-strong focus:ring-4 focus:ring-[rgb(201_242_74_/_0.4)];
+  }
+
+  .stack {
+    display: grid;
+    @apply gap-4;
+  }
+
+  .split {
+    display: grid;
+    @apply items-start gap-10 md:grid-cols-[1.1fr_0.9fr];
+  }
+
+  .surface {
+    @apply bg-soft;
+  }
+
+  .muted {
+    @apply text-muted;
+  }
+}

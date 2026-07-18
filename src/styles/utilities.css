@@ -1,0 +1,36 @@
+.split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: start;
+}
+.stack {
+  display: grid;
+  gap: 16px;
+}
+.muted {
+  color: var(--color-muted);
+}
+.text-regular {
+  font-weight: var(--font-weight-regular);
+}
+.text-medium {
+  font-weight: var(--font-weight-medium);
+}
+.text-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+.text-bold {
+  font-weight: var(--font-weight-bold);
+}
+.surface {
+  background: var(--color-soft);
+}
+@media (max-width: 780px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 56px 0;
+  }
+}

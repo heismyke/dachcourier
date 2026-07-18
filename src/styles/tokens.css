@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand */
+  --dach-navy-950: #07172c;
+  --dach-navy-900: #0d1f3c;
+  --dach-navy-800: #15325a;
+
+  --dach-blue-700: #174f8f;
+  --dach-blue-600: #1e5faa;
+  --dach-blue-500: #2673c7;
+  --dach-blue-400: #3f8dde;
+
+  --dach-sky-500: #0ea5e9;
+  --dach-sky-400: #38bdf8;
+  --dach-sky-100: #e0f2fe;
+
+  /* Neutral */
+  --dach-white: #ffffff;
+  --dach-grey-25: #fcfcfd;
+  --dach-grey-50: #f7f9fc;
+  --dach-grey-100: #f1f5f9;
+  --dach-grey-200: #e2e8f0;
+  --dach-grey-300: #cbd5e1;
+  --dach-grey-500: #64748b;
+  --dach-grey-600: #475569;
+  --dach-grey-700: #334155;
+  --dach-grey-900: #172033;
+
+  /* Semantic */
+  --dach-success-50: #ecfdf3;
+  --dach-success-500: #16a34a;
+  --dach-success-700: #15803d;
+
+  --dach-warning-50: #fff7ed;
+  --dach-warning-500: #f59e0b;
+  --dach-warning-700: #b45309;
+
+  --dach-danger-50: #fef2f2;
+  --dach-danger-500: #dc2626;
+  --dach-danger-700: #b91c1c;
+
+  --dach-info-50: #eff6ff;
+  --dach-info-500: #2563eb;
+  --dach-info-700: #1d4ed8;
+
+  /* Text */
+  --dach-text-primary: #172033;
+  --dach-text-secondary: #475569;
+  --dach-text-muted: #6b7e90;
+  --dach-text-inverse: #ffffff;
+
+  /* Surfaces */
+  --dach-surface-page: #f7f9fc;
+  --dach-surface-card: #ffffff;
+  --dach-surface-subtle: #f1f5f9;
+  --dach-surface-dark: #0d1f3c;
+
+  /* Borders */
+  --dach-border-light: #e2e8f0;
+  --dach-border-default: #d6dee8;
+  --dach-border-strong: #b8c4d2;
+
+  /* Radius */
+  --dach-radius-xs: 4px;
+  --dach-radius-sm: 7px;
+  --dach-radius-md: 10px;
+  --dach-radius-lg: 14px;
+  --dach-radius-xl: 18px;
+  --dach-radius-pill: 999px;
+
+  /* Shadow */
+  --dach-shadow-xs: 0 1px 2px rgba(13, 31, 60, 0.05);
+  --dach-shadow-sm: 0 3px 12px rgba(13, 31, 60, 0.07);
+  --dach-shadow-md: 0 12px 36px rgba(13, 31, 60, 0.1);
+  --dach-shadow-lg: 0 24px 64px rgba(13, 31, 60, 0.14);
+
+  /* Layout */
+  --dach-container-xl: 1440px;
+  --dach-container-lg: 1200px;
+  --dach-container-md: 960px;
+
+  /* Motion */
+  --dach-transition-fast: 150ms ease;
+  --dach-transition-base: 220ms ease;
+  --dach-transition-slow: 320ms ease;
+
+  /* Typography */
+  --dach-font-sans:
+    'Barlow', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --dach-font-display: 'Barlow', ui-sans-serif, system-ui, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Compatibility aliases used across both Vue apps */
+  --brand-navy: var(--dach-navy-950);
+  --brand-blue: var(--dach-blue-600);
+  --brand-blue-hover: var(--dach-blue-700);
+  --brand-sky: var(--dach-sky-500);
+  --brand-cyan: var(--dach-sky-400);
+  --brand-accent: var(--dach-warning-500);
+  --brand-accent-soft: var(--dach-warning-50);
+  --brand-danger: var(--dach-danger-500);
+  --brand-success: var(--dach-success-500);
+  --brand-warning: var(--dach-warning-500);
+
+  --ink: var(--dach-text-primary);
+  --ink-soft: var(--dach-grey-700);
+  --text: var(--dach-text-secondary);
+  --muted: var(--dach-text-muted);
+  --surface: var(--dach-surface-card);
+  --surface-soft: var(--dach-surface-page);
+  --surface-muted: var(--dach-surface-subtle);
+  --border: var(--dach-border-default);
+
+  --color-ink: var(--dach-text-primary);
+  --color-muted: var(--dach-text-muted);
+  --color-line: var(--dach-border-light);
+  --color-surface: var(--dach-surface-card);
+  --color-soft: var(--dach-surface-page);
+  --color-panel: var(--dach-surface-card);
+  --color-brand: var(--dach-blue-600);
+  --color-brand-strong: var(--dach-blue-700);
+  --color-accent: var(--dach-sky-500);
+  --color-danger: var(--dach-danger-500);
+
+  --shadow-sm: var(--dach-shadow-sm);
+  --shadow-md: var(--dach-shadow-md);
+  --shadow-lg: var(--dach-shadow-lg);
+  --shadow: var(--dach-shadow-md);
+
+  --radius-sm: var(--dach-radius-sm);
+  --radius-md: var(--dach-radius-md);
+  --radius-lg: var(--dach-radius-lg);
+  --radius-xl: var(--dach-radius-xl);
+  --radius: var(--dach-radius-md);
+
+  --font-sans: var(--dach-font-sans);
+  --font: var(--dach-font-sans);
+  --font-display: var(--dach-font-display);
+
+  --container: var(--dach-container-lg);
+}

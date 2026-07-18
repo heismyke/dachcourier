@@ -1,0 +1,20 @@
+.field {
+  display: grid;
+  gap: 8px;
+}
+.label {
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-semibold);
+}
+.control {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  background: #fff;
+}
+.control:focus {
+  outline: 3px solid rgb(201 242 74 / 36%);
+  border-color: var(--color-brand-strong);
+}
