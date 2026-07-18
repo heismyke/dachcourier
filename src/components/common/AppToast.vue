@@ -1,5 +1,5 @@
 <template>
-  <div class="toasts" aria-live="polite">
+  <div v-auto-animate class="toasts" aria-live="polite">
     <div v-for="toast in store.items" :key="toast.id" class="toast">{{ toast.message }}</div>
   </div>
 </template>
@@ -22,5 +22,8 @@ const store = useNotificationsStore()
   border-radius: var(--radius-sm);
   padding: 12px 14px;
   box-shadow: var(--shadow-md);
+  transition:
+    opacity var(--dach-motion-normal) var(--dach-motion-ease),
+    transform var(--dach-motion-normal) var(--dach-motion-ease);
 }
 </style>

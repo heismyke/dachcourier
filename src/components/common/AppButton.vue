@@ -30,6 +30,18 @@ withDefaults(defineProps<{ to?: string; variant?: 'primary' | 'secondary' | 'gho
   padding: 0 18px;
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
+  transition:
+    background var(--dach-motion-fast) var(--dach-motion-ease),
+    border-color var(--dach-motion-fast) var(--dach-motion-ease),
+    box-shadow var(--dach-motion-fast) var(--dach-motion-ease),
+    transform var(--dach-motion-fast) var(--dach-motion-ease);
+}
+.app-button:hover {
+  box-shadow: var(--dach-shadow-sm);
+  transform: translateY(-1px) scale(1.02);
+}
+.app-button:active {
+  transform: translateY(0) scale(1);
 }
 .app-button--primary {
   background: var(--brand-blue);

@@ -27,51 +27,78 @@
       <nav aria-label="Primary navigation">
         <RouterLink to="/track">Track</RouterLink>
         <div class="nav-item">
-          <button class="nav-trigger" type="button" aria-haspopup="true">
+          <button
+            ref="shipTrigger"
+            class="nav-trigger"
+            type="button"
+            aria-haspopup="true"
+            :aria-expanded="isShipMenuOpen"
+            @click="isShipMenuOpen = !isShipMenuOpen"
+            @keydown.escape="isShipMenuOpen = false"
+          >
             Ship
             <ChevronDown :size="16" />
           </button>
-          <div class="mega-menu" role="menu">
-            <section class="mega-start" aria-label="Start shipping">
-              <h3>Start shipping</h3>
-              <RouterLink to="/quote" class="quick-action">
-                <Calculator :size="20" />
-                <span>Inquiry</span>
-                <ChevronRight :size="18" />
-              </RouterLink>
-              <RouterLink to="/book" class="quick-action">
-                <PackagePlus :size="20" />
-                <span>Book a courier</span>
-                <ChevronRight :size="18" />
-              </RouterLink>
-            </section>
+          <Transition name="dropdown">
+            <div
+              v-show="isShipMenuOpen"
+              ref="shipMenu"
+              class="mega-menu"
+              :style="floatingStyles"
+              role="menu"
+              @keydown.escape="isShipMenuOpen = false"
+            >
+              <section class="mega-start" aria-label="Start shipping">
+                <h3>Start shipping</h3>
+                <RouterLink to="/quote" class="quick-action" @click="isShipMenuOpen = false">
+                  <Calculator :size="20" />
+                  <span>Inquiry</span>
+                  <ChevronRight :size="18" />
+                </RouterLink>
+                <RouterLink to="/book" class="quick-action" @click="isShipMenuOpen = false">
+                  <PackagePlus :size="20" />
+                  <span>Book a courier</span>
+                  <ChevronRight :size="18" />
+                </RouterLink>
+              </section>
 
-            <section class="mega-learn" aria-label="Learn more about Dach services">
-              <h3>Learn more about</h3>
-              <div class="mega-columns">
-                <article>
-                  <h4>Documents and parcels</h4>
-                  <span>Personal and business</span>
-                  <p>Send urgent documents, parcels, samples, and customer orders across the UK.</p>
-                  <RouterLink to="/services/same-day-courier">Explore courier services</RouterLink>
-                </article>
-                <article>
-                  <h4>Scheduled logistics</h4>
-                  <span>Business only</span>
-                  <p>Plan repeat routes, multi-stop collections, and account courier workflows.</p>
-                  <RouterLink to="/business">Explore business logistics</RouterLink>
-                </article>
-                <article>
-                  <h4>Dach for business</h4>
-                  <span>Frequent shippers</span>
-                  <p>
-                    Use account support, route visibility, and practical reporting for your team.
-                  </p>
-                  <RouterLink to="/support">Request account support</RouterLink>
-                </article>
-              </div>
-            </section>
-          </div>
+              <section class="mega-learn" aria-label="Learn more about Dach services">
+                <h3>Learn more about</h3>
+                <div class="mega-columns">
+                  <article>
+                    <h4>Documents and parcels</h4>
+                    <span>Personal and business</span>
+                    <p>
+                      Send urgent documents, parcels, samples, and customer orders across the UK.
+                    </p>
+                    <RouterLink to="/services/same-day-courier" @click="isShipMenuOpen = false">
+                      Explore courier services
+                    </RouterLink>
+                  </article>
+                  <article>
+                    <h4>Scheduled logistics</h4>
+                    <span>Business only</span>
+                    <p>
+                      Plan repeat routes, multi-stop collections, and account courier workflows.
+                    </p>
+                    <RouterLink to="/business" @click="isShipMenuOpen = false">
+                      Explore business logistics
+                    </RouterLink>
+                  </article>
+                  <article>
+                    <h4>Dach for business</h4>
+                    <span>Frequent shippers</span>
+                    <p>
+                      Use account support, route visibility, and practical reporting for your team.
+                    </p>
+                    <RouterLink to="/support" @click="isShipMenuOpen = false">
+                      Request account support
+                    </RouterLink>
+                  </article>
+                </div>
+              </section>
+            </div>
+          </Transition>
         </div>
         <RouterLink to="/services">Services</RouterLink>
         <RouterLink to="/business">Business</RouterLink>
@@ -126,14 +153,47 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/vue'
+import { onClickOutside } from '@vueuse/core'
 import { Calculator, ChevronDown, ChevronRight, Menu, PackagePlus, X } from 'lucide-vue-next'
 import AppButton from '@/components/common/AppButton.vue'
 
 const isMobileMenuOpen = ref(false)
+const isShipMenuOpen = ref(false)
+const shipTrigger = ref<HTMLElement | null>(null)
+const shipMenu = ref<HTMLElement | null>(null)
+
+const { floatingStyles } = useFloating(shipTrigger, shipMenu, {
+  placement: 'bottom-start',
+  whileElementsMounted: autoUpdate,
+  middleware: [
+    offset(12),
+    flip(),
+    shift({ padding: 20 }),
+    size({
+      padding: 20,
+      apply({ availableWidth, elements }) {
+        Object.assign(elements.floating.style, {
+          maxWidth: `${Math.min(1180, availableWidth)}px`,
+        })
+      },
+    }),
+  ],
+})
+
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
 }
+
+onClickOutside(shipMenu, (event) => {
+  if (shipTrigger.value?.contains(event.target as Node)) return
+  isShipMenuOpen.value = false
+})
+
+watch(isMobileMenuOpen, (open) => {
+  if (open) isShipMenuOpen.value = false
+})
 </script>
 
 <style scoped>
@@ -223,9 +283,6 @@ nav > a.router-link-active,
   align-items: center;
 }
 .mega-menu {
-  position: absolute;
-  left: 50%;
-  top: 120px;
   width: min(var(--container), calc(100% - 40px));
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -233,21 +290,10 @@ nav > a.router-link-active,
   border: 1px solid var(--border);
   background: #fff;
   box-shadow: var(--shadow-lg);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(-8px);
+  transform-origin: top left;
   transition:
     opacity 160ms ease,
-    transform 160ms ease,
-    visibility 160ms ease;
-}
-.nav-item:hover .mega-menu,
-.nav-item:focus-within .mega-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+    transform 160ms ease;
 }
 .mega-start {
   display: grid;
@@ -326,6 +372,17 @@ nav > a.router-link-active,
   display: flex;
   gap: 10px;
 }
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition:
+    opacity 180ms var(--dach-motion-ease),
+    transform 180ms var(--dach-motion-ease);
+}
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: scale(0.98) translateY(-4px);
+}
 .mobile-menu-button,
 .mobile-panel {
   display: none;
@@ -379,6 +436,7 @@ nav > a.router-link-active,
     border-top: 1px solid var(--border);
     background: #fff;
     box-shadow: var(--shadow-md);
+    animation: mobile-panel-in 250ms var(--dach-motion-ease);
   }
   .mobile-panel-inner {
     width: min(var(--container), calc(100% - 28px));
@@ -428,6 +486,16 @@ nav > a.router-link-active,
     background: var(--brand-blue);
     color: #fff !important;
     font-weight: var(--font-weight-semibold) !important;
+  }
+}
+@keyframes mobile-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 @media (max-width: 390px) {

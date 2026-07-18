@@ -1,9 +1,20 @@
 <template>
-  <Teleport to="body"
-    ><aside v-if="open" class="drawer"><slot /></aside
-  ></Teleport>
+  <Teleport to="body">
+    <motion.aside
+      v-if="open"
+      class="drawer"
+      :initial="{ opacity: 0, x: 24 }"
+      :animate="{ opacity: 1, x: 0 }"
+      :exit="{ opacity: 0, x: 24 }"
+      :transition="{ duration: 0.22, ease: [0.22, 0.61, 0.36, 1] }"
+    >
+      <slot />
+    </motion.aside>
+  </Teleport>
 </template>
 <script setup lang="ts">
+import { motion } from 'motion-v'
+
 defineProps<{ open: boolean }>()
 </script>
 <style scoped>

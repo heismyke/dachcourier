@@ -2,7 +2,7 @@
   <div class="faq-groups">
     <section v-for="group in groups" :key="group.category" class="faq-group">
       <h2>{{ group.label }}</h2>
-      <div class="faq-list">
+      <div v-auto-animate class="faq-list">
         <FAQItem
           v-for="item in group.items"
           :key="item.id"

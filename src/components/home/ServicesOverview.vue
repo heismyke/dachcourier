@@ -10,41 +10,45 @@
       </div>
 
       <div class="editorial">
-        <article class="service-feature">
-          <div class="service-copy">
-            <h3>Document and parcel shipping</h3>
-            <p>
-              Send urgent documents, parcels, samples, and customer orders with reliable collection
-              windows and milestone tracking.
-            </p>
-            <ul>
-              <li v-for="item in parcelBenefits" :key="item">
-                <FontAwesomeIcon :icon="faCircleCheck" />
-                <span>{{ item }}</span>
-              </li>
-            </ul>
-            <AppButton to="/services/same-day-courier">Explore parcel services</AppButton>
-          </div>
-          <img :src="parcelImage" alt="Dach courier handing over a parcel" />
-        </article>
+        <RevealOnScroll>
+          <article class="service-feature">
+            <div class="service-copy">
+              <h3>Document and parcel shipping</h3>
+              <p>
+                Send urgent documents, parcels, samples, and customer orders with reliable
+                collection windows and milestone tracking.
+              </p>
+              <ul>
+                <li v-for="item in parcelBenefits" :key="item">
+                  <FontAwesomeIcon :icon="faCircleCheck" />
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+              <AppButton to="/services/same-day-courier">Explore parcel services</AppButton>
+            </div>
+            <img :src="parcelImage" alt="Dach courier handing over a parcel" />
+          </article>
+        </RevealOnScroll>
 
-        <article class="service-feature reverse">
-          <div class="service-copy">
-            <h3>Managed courier logistics</h3>
-            <p>
-              Plan repeat routes, multi-stop collections, scheduled stock transfers, and
-              account-level courier workflows across UK regions.
-            </p>
-            <ul>
-              <li v-for="item in businessBenefits" :key="item">
-                <FontAwesomeIcon :icon="faCircleCheck" />
-                <span>{{ item }}</span>
-              </li>
-            </ul>
-            <AppButton to="/business" variant="ghost">Explore business logistics</AppButton>
-          </div>
-          <img :src="depotImage" alt="Dach courier vans being loaded at a logistics depot" />
-        </article>
+        <RevealOnScroll :delay="0.08">
+          <article class="service-feature reverse">
+            <div class="service-copy">
+              <h3>Managed courier logistics</h3>
+              <p>
+                Plan repeat routes, multi-stop collections, scheduled stock transfers, and
+                account-level courier workflows across UK regions.
+              </p>
+              <ul>
+                <li v-for="item in businessBenefits" :key="item">
+                  <FontAwesomeIcon :icon="faCircleCheck" />
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+              <AppButton to="/business" variant="ghost">Explore business logistics</AppButton>
+            </div>
+            <img :src="depotImage" alt="Dach courier vans being loaded at a logistics depot" />
+          </article>
+        </RevealOnScroll>
       </div>
     </div>
   </section>
@@ -53,6 +57,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import AppButton from '@/components/common/AppButton.vue'
+import RevealOnScroll from '@/components/common/RevealOnScroll.vue'
 import parcelImage from '@/assets/images/dach-parcel-handoff.jpg'
 import depotImage from '@/assets/images/dach-depot-vans.jpg'
 

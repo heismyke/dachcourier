@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 import App from './App.vue'
 import router from './router'
 import './styles/tokens.css'
@@ -10,4 +11,4 @@ import './styles/typography.css'
 import './styles/forms.css'
 import './styles/utilities.css'
 
-createApp(App).use(createPinia()).use(router).mount('#app')
+createApp(App).use(createPinia()).use(router).use(autoAnimatePlugin).mount('#app')

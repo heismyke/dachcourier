@@ -84,6 +84,11 @@
   --dach-transition-fast: 150ms ease;
   --dach-transition-base: 220ms ease;
   --dach-transition-slow: 320ms ease;
+  --dach-motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dach-motion-fast: 150ms;
+  --dach-motion-normal: 220ms;
+  --dach-motion-slow: 320ms;
+  --dach-motion-hero: 520ms;
 
   /* Typography */
   --dach-font-sans:

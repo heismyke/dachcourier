@@ -5,27 +5,47 @@
       <div class="hero-shade" />
       <div class="container hero-content">
         <div class="hero-copy">
-          <h1>Courier delivery with confidence.</h1>
-          <p>
+          <motion.h1 :initial="heroInitial" :animate="heroAnimate" :transition="heroHeading">
+            Courier delivery with confidence.
+          </motion.h1>
+          <motion.p :initial="heroInitial" :animate="heroAnimate" :transition="heroCopy">
             Dach Courier Services helps you quote, book and follow urgent parcels, scheduled
             deliveries and business courier routes across supported UK areas.
-          </p>
-          <div class="hero-actions">
+          </motion.p>
+          <motion.div
+            :initial="heroInitial"
+            :animate="heroAnimate"
+            :transition="heroActions"
+            class="hero-actions"
+          >
             <AppButton to="/quote">Get a Quote</AppButton>
             <AppButton to="/track" variant="ghost">Track Shipment</AppButton>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
-    <div class="container action-panel-wrap">
+    <motion.div
+      class="container action-panel-wrap"
+      :initial="heroInitial"
+      :animate="heroAnimate"
+      :transition="heroPanel"
+    >
       <ShipmentActionPanel />
-    </div>
+    </motion.div>
   </section>
 </template>
 <script setup lang="ts">
+import { motion } from 'motion-v'
 import AppButton from '@/components/common/AppButton.vue'
 import ShipmentActionPanel from './ShipmentActionPanel.vue'
 import heroImage from '@/assets/images/dach-hero-courier.jpg'
+
+const heroInitial = { opacity: 0, y: 18 }
+const heroAnimate = { opacity: 1, y: 0 }
+const heroHeading = { duration: 0.52, ease: [0.22, 0.61, 0.36, 1] }
+const heroCopy = { duration: 0.48, delay: 0.08, ease: [0.22, 0.61, 0.36, 1] }
+const heroActions = { duration: 0.42, delay: 0.16, ease: [0.22, 0.61, 0.36, 1] }
+const heroPanel = { duration: 0.46, delay: 0.24, ease: [0.22, 0.61, 0.36, 1] }
 </script>
 <style scoped>
 .hero {

@@ -14,6 +14,7 @@
       <ChevronDown :size="20" />
     </button>
     <div
+      v-if="open"
       :id="`${item.id}-panel`"
       class="answer"
       role="region"
@@ -76,21 +77,15 @@ button svg {
   transform: rotate(180deg);
 }
 .answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 220ms ease;
-}
-.open .answer {
-  grid-template-rows: 1fr;
+  border-top: 1px solid var(--border);
 }
 .answer p {
-  min-height: 0;
-  overflow: hidden;
   padding: 0 20px;
   color: var(--text);
   font-weight: var(--font-weight-regular);
 }
-.open .answer p {
+.answer p {
+  padding-top: 16px;
   padding-bottom: 20px;
 }
 </style>
